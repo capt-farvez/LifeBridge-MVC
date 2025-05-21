@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    ViewData["Description"] = "Welcome to LifeBridge! We are dedicated to providing support and resources for individuals and families on their journey towards a healthier life.";
+    ViewData["Keywords"] = "LifeBridge, Home, Health, Wellness, Support";
+    ViewData["Author"] = "LifeBridge Team";
+    ViewData["Date"] = DateTime.Now.ToString("yyyy-MM-dd");
+
+}
+
+<div class="text-center">
+    <h2 class="display-4">Welcome to LifeBridge</h2>
+    <p class="text-muted">@ViewData["Date"]</p>
+
+    <p class="text-left">Welcome to LifeBridge! We are dedicated to providing support and resources for individuals and families on their journey towards a healthier life.</p>
+    <p class="text-left">At LifeBridge, our mission is to empower individuals and families to achieve their health and wellness goals through education, support, and community engagement.</p>
+    <p class="text-left">We envision a world where everyone has access to the resources they need to lead a healthy and fulfilling life.</p>
+    <p class="text-left">We care deeply about the well-being of our community.</p>
+    <p class="text-left">We operate with honesty and transparency in all that we do.</p>
+    <p class="text-left">We believe in the power of working together to achieve common goals.</p>
+    <p class="text-left">We are committed to finding new and effective ways to support our community.</p>
+    <p class="text-left">We are here to help you on your journey towards a healthier life.</p>
+    <p class="text-left">Explore our website to learn more about our programs and services, and feel free to reach out to us if you have any questions or need assistance.</p>
+    <p class="text-left">Thank you for visiting LifeBridge!</p>
+    <p>
+        <a class="btn btn-secondary" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+        <a class="btn btn-success" asp-area="" asp-controller="Home" asp-action="About">About</a>
+        <a class="btn btn-info" asp-area="" asp-controller="BloodDonation" asp-action="BloodDonation">Blood Donation</a>
+        <a class="btn btn-warning" asp-area="" asp-controller="OrganDonation" asp-action="OrganDonation">Organ Donation</a>
+    </p>
+</div>

@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Thank You";
+    ViewData["Description"] = "Thank you for your message!";
+    ViewData["Keywords"] = "LifeBridge, Thank You, Contact";
+    ViewData["Author"] = "LifeBridge Team";
+    ViewData["Date"] = DateTime.Now.ToString("yyyy-MM-dd");
+}
+@{
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+    <p>Thank you for reaching out to us! We appreciate your message and will get back to you as soon as possible.</p>
+</div>

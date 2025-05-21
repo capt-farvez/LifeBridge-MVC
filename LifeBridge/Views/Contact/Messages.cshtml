@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Messages";
+    ViewData["Description"] = "View all messages";
+    ViewData["Keywords"] = "LifeBridge, Messages, Contact";
+    ViewData["Author"] = "LifeBridge Team";
+    ViewData["Date"] = DateTime.Now.ToString("yyyy-MM-dd");
+}
+@{
+    Layout = "_Layout";
+}
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+    <p>Here are all the messages:</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var message in Model)
+            {
+                <tr>
+                    <td>@message.Name</td>
+                    <td>@message.Email</td>
+                    <td>@message.Subject</td>
+                    <td>@message.Message</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

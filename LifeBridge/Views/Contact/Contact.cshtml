@@ -1,0 +1,31 @@
+    @{
+        ViewData["Title"] = "Contact";
+        ViewData["Description"] = "Get in touch with LifeBridge";
+        ViewData["Keywords"] = "LifeBridge, Contact, Support";
+        ViewData["Author"] = "LifeBridge Team";
+        ViewData["Date"] = DateTime.Now.ToString("yyyy-MM-dd");
+    }
+    @{
+        Layout = "_Layout";
+    }
+    <div class="container">
+        <h1>@ViewData["Title"]</h1>
+        <p>If you have any questions or would like to get in touch with us, please fill out the form below:</p>
+
+        <form method="post" action="/Contact">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="SenderName" name="SenderName" required />
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="Email" name="Email" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="Content" name="Content" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>  
