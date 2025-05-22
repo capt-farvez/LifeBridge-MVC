@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+<h3>Welcome, @Model.Name!</h3>
+<p>Email: @Model.Email</p>
+<p>Phone Number: @Model.PhoneNumber</p>
+<p>Address: @Model.Address</p>
+<p>Date of Birth: @Model.DateOfBirth.ToString("yyyy-MM-dd")</p>
+<p>Blood Group: @Model.BloodGroup</p>
+<p><a asp-action="UpdateProfile" asp-controller="User" asp-route-id="@Model.Id">Edit Profile</a></p>
+<p><a asp-action="ChangePassword" asp-controller="User" asp-route-id="@Model.Id">Change Password</a></p>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <p style="color:green;">@TempData["Success"]</p>
+}
+@if (TempData["Error"] != null)
+{
+    <p style="color:red;">@TempData["Error"]</p>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
