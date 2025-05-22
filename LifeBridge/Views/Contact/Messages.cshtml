@@ -1,3 +1,5 @@
+@model IEnumerable<LifeBridge.Models.Message>
+
 @{
     ViewData["Title"] = "Messages";
     ViewData["Description"] = "View all messages";
@@ -5,6 +7,7 @@
     ViewData["Author"] = "LifeBridge Team";
     ViewData["Date"] = DateTime.Now.ToString("yyyy-MM-dd");
 }
+
 @{
     Layout = "_Layout";
 }
@@ -17,21 +20,26 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Subject</th>
                 <th>Message</th>
+                <th>Message Date</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var message in Model)
             {
                 <tr>
-                    <td>@message.Name</td>
+                    <td>@message.SenderName</td>
                     <td>@message.Email</td>
-                    <td>@message.Subject</td>
-                    <td>@message.Message</td>
+                    <td>@message.Content</td>
+                    <td>@message.SentAt.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <form action="@Url.Action("Delete", "Contact", new { id = message.Id })" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-
