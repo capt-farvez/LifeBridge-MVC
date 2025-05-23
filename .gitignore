@@ -57,3 +57,6 @@ nunit-*.xml
 *.db
 *.db-shm
 *.db-wal
+
+# vs code Files
+*.vscode
