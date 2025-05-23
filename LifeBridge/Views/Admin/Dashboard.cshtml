@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Admin Panel";
+}
+
+@{
+    Layout = "_Layout";
+}
+
+@model LifeBridge.Models.ViewModels.AdminDashboardViewModel
+
+<h2>Admin Dashboard</h2>
+
+<ul>
+    <li>Total Users: @Model.TotalUsers</li>
+    @* <li>Blood Requests: @Model.TotalBloodRequests</li>
+    <li>Blood Availabilities: @Model.TotalBloodAvailabilities</li>
+    <li>Organ Requests: @Model.TotalOrganRequests</li>
+    <li>Organ Availabilities: @Model.TotalOrganAvailabilities</li> *@
+</ul>
