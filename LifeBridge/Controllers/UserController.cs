@@ -3,9 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 using System.Text;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace LifeBridge.Controllers
-{
+{   
+    
     public class UserController : Controller
     {
         private readonly AppDbContext _context;
@@ -82,6 +87,25 @@ namespace LifeBridge.Controllers
             // Set user session or authentication cookie here
             HttpContext.Session.SetString("UserId", user.Id.ToString());
             HttpContext.Session.SetString("UserName", user.Name ?? "User");
+            HttpContext.Session.SetString("UserRole", user.Role.ToString());
+
+            // Set user authentication cookie here
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Name ?? "User"),
+                new Claim(ClaimTypes.Role, user.Role.ToString()) // For [Authorize(Roles = "Admin" or "User")]
+            };
+
+            var identity = new ClaimsIdentity(claims, "MyCookieAuth");
+            var principal = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync("MyCookieAuth", principal);
+            if (user.Role == Role.Admin)
+            {
+                return RedirectToAction("Dashboard", "Admin");
+            }
+
             return RedirectToRoute(new { controller = "User", action = "Profile", id = user.Id });
         }
 
@@ -91,16 +115,8 @@ namespace LifeBridge.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
+            HttpContext.SignOutAsync("MyCookieAuth");
             return View();
-        }
-
-        // To Get All Users
-        [HttpGet]
-        [Route("users/all")]
-        public IActionResult Users()
-        {
-            var users = _context.Users.ToList();
-            return View(users);
         }
 
         // To get Password Change Page
@@ -168,6 +184,7 @@ namespace LifeBridge.Controllers
 
 
         // To Get User Profile Page
+        // [Authorize]
         [HttpGet]
         [Route("users/{id}/profile")]
         public IActionResult Profile()
