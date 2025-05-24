@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Messages Details";
+}
+
+@{
+    Layout = "_Layout";
+}
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+    <p>Here is message details:</p>
+    <p>Name: @Model.SenderName<p>
+    <p>Email: @Model.Email</p>
+    <p>Content: @Model.Content</p>
+    <p>Date: @Model.SentAt.ToString("yyyy-MM-dd")</p>
+    <p>
+    <a class="btn btn-secondary" asp-area="" asp-controller="Admin" asp-action="Messages">Back To Messages</a>
+    </p>
+</div>

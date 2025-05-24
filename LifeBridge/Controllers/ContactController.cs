@@ -14,15 +14,6 @@ namespace LifeBridge.Controllers
             _context = context;
         }
 
-        //  It retrieves all messages from the database (Message Model) and returns them to the view
-        [HttpGet]
-        [Route("contact/messages")]
-        public IActionResult Messages()
-        {
-            var messages = _context.Messages.ToList();
-            return View(messages);
-        }
-
         //  To display the contact form, we use the Contact method.
         [HttpGet]
         [Route("contact")]
@@ -53,20 +44,6 @@ namespace LifeBridge.Controllers
         public IActionResult ThankYou()
         {
             return View();
-        }
-
-        //  The Delete method handles the deletion of a message from the database. It retrieves the message by ID, removes it, and saves the changes.
-        [HttpPost]
-        [Route("contact/delete/{id}")]
-        public IActionResult Delete(int id)
-        {
-            var message = _context.Messages.Find(id);
-            if (message != null)
-            {
-                _context.Messages.Remove(message);
-                _context.SaveChanges();
-            }
-            return RedirectToAction("Messages");
         }
 
     }

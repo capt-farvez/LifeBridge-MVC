@@ -22,7 +22,9 @@
                 <th>Email</th>
                 <th>Message</th>
                 <th>Message Date</th>
+                <th>Action</th>
                 <th>Actions</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -34,9 +36,12 @@
                     <td>@message.Content</td>
                     <td>@message.SentAt.ToString("yyyy-MM-dd")</td>
                     <td>
-                        <form action="@Url.Action("Delete", "Contact", new { id = message.Id })" method="post" style="display:inline;">
+                        <form action="@Url.Action("DeleteMessage", "Admin", new { id = message.Id })" method="post" style="display:inline;">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
+                    </td>
+                    <td>
+                        <a asp-controller="Admin" asp-action="MessageDetails" asp-route-id="@message.Id">View Details</a>
                     </td>
                 </tr>
             }

@@ -9,6 +9,11 @@
 @model LifeBridge.Models.ViewModels.AdminDashboardViewModel
 
 <h2>Admin Dashboard</h2>
+<p>
+    <a class="btn btn-secondary" asp-area="" asp-controller="Admin" asp-action="AllUsers">All Users</a>
+    <a class="btn btn-secondary" asp-area="" asp-controller="Admin" asp-action="CreateUser">Add User</a>
+    <a class="btn btn-secondary" asp-area="" asp-controller="Admin" asp-action="Messages">All Message</a>
+</p>
 
 <ul>
     <li>Total Users: @Model.TotalUsers</li>
