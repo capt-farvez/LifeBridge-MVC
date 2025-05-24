@@ -20,6 +20,7 @@ builder.Services.AddSession(options =>
 builder.Services.AddAuthentication("MyCookieAuth")
     .AddCookie("MyCookieAuth", options =>
     {
+        options.LoginPath = "/users/login"; 
         options.AccessDeniedPath = "/access-denied";
     });
 

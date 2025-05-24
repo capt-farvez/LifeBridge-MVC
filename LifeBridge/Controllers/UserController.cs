@@ -184,7 +184,7 @@ namespace LifeBridge.Controllers
 
 
         // To Get User Profile Page
-        // [Authorize]
+        [Authorize(AuthenticationSchemes = "MyCookieAuth", Roles = "Admin,User")]
         [HttpGet]
         [Route("users/{id}/profile")]
         public IActionResult Profile()
@@ -204,6 +204,7 @@ namespace LifeBridge.Controllers
         }
 
         // User profile update
+        [Authorize(AuthenticationSchemes = "MyCookieAuth", Roles = "Admin,User")]
         [HttpGet]
         [Route("users/{id}/update")]
         public IActionResult UpdateProfile()
@@ -222,6 +223,7 @@ namespace LifeBridge.Controllers
             return View("UpdateProfile", user);
         }
 
+        [Authorize(AuthenticationSchemes = "MyCookieAuth", Roles = "Admin,User")]
         [HttpPost]
         [Route("users/{id}/update")]
         public IActionResult UpdateProfile(User user)
@@ -255,6 +257,7 @@ namespace LifeBridge.Controllers
         }
 
         // To Get User Details
+        [Authorize(AuthenticationSchemes = "MyCookieAuth", Roles = "Admin,User")]
         [HttpGet]
         [Route("users/{id}")]
         public IActionResult Details(Guid id)
