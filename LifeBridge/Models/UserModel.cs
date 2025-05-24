@@ -21,6 +21,11 @@ namespace LifeBridge.Models
         [Display(Name = "O-")]
         O_Negative
     }
+
+    public enum Role{
+        Admin,
+        User
+    }
     public class User
     {
         public Guid Id { get; set; }
@@ -30,6 +35,7 @@ namespace LifeBridge.Models
         public string? PhoneNumber { get; set; }
         public string? Address { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public Role Role {get; set;}
         public BloodGroup BloodGroup { get; set; }
     }
 }
