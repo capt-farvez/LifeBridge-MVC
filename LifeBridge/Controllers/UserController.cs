@@ -44,6 +44,7 @@ namespace LifeBridge.Controllers
             // Hash the password before saving
             user.Password = HashPassword(user.Password);
             user.Id = Guid.NewGuid(); // Generate a new GUID for the user ID
+            user.Role = Role.User;
 
             // Save the new user to the database
             _context.Users.Add(user);
