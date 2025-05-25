@@ -2,26 +2,27 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview AS base
 WORKDIR /app
 EXPOSE 80
 
+# --- Build image ---
 FROM mcr.microsoft.com/dotnet/sdk:9.0-preview AS build
 WORKDIR /src
-
-# Install EF Tools
-RUN dotnet tool install --global dotnet-ef
-ENV PATH="$PATH:/root/.dotnet/tools"
 
 # Copy and restore
 COPY . .
 RUN dotnet restore "LifeBridge/LifeBridge.csproj"
 
-# Apply EF Migrations
-WORKDIR /src/LifeBridge
-RUN dotnet ef database update
-
 # Publish app
-RUN dotnet publish "LifeBridge.csproj" -c Release -o /app/publish
+RUN dotnet publish "LifeBridge/LifeBridge.csproj" -c Release -o /app/publish
 
-FROM base AS final
+# --- Final runtime image ---
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview AS final
 WORKDIR /app
+
+# Install EF Tools for runtime
+RUN dotnet tool install --global dotnet-ef
+ENV PATH="${PATH}:/root/.dotnet/tools"
+
+# Copy the app
 COPY --from=build /app/publish .
 
+# Startup: Run EF migration + start app
 CMD ["sh", "-c", "dotnet ef database update && dotnet LifeBridge.dll"]
