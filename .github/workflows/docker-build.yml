@@ -23,7 +23,7 @@ jobs:
     
     - name: Build and publish project
       run: |
-        cd LifeBridge-MVC/LifeBridge
+        cd LifeBridge
         dotnet restore
         dotnet build --configuration Release
         dotnet publish --configuration Release --output ../../publish
