@@ -1,0 +1,37 @@
+name: Build and Publish Docker Image
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.100-preview.3
+
+    - name: Restore dependencies
+      run: dotnet restore LifeBridge-MVC/LifeBridge.csproj
+
+    - name: Build
+      run: dotnet build LifeBridge-MVC/LifeBridge.csproj --configuration Release
+
+    - name: Publish
+      run: dotnet publish LifeBridge-MVC/LifeBridge.csproj --configuration Release --output ./publish
+
+    - name: List output files
+      run: ls -la ./publish
+
+    - name: Build Docker Image
+      run: docker build -t lifebridge-app .
