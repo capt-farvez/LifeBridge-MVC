@@ -11,10 +11,10 @@ ENV PATH="$PATH:/root/.dotnet/tools"
 
 # Copy and restore
 COPY . .
-RUN dotnet restore "LifeBridge-MVC/LifeBridge.csproj"
+RUN dotnet restore "LifeBridge/LifeBridge.csproj"
 
 # Apply EF Migrations
-WORKDIR /src/LifeBridge-MVC
+WORKDIR /src/LifeBridge
 RUN dotnet ef database update
 
 # Publish app
