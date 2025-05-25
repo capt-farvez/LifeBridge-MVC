@@ -22,14 +22,14 @@ jobs:
         dotnet-version: 9.0.x
 
     - name: Restore dependencies
-      run: dotnet restore LifeBridge-MVC/LifeBridge.csproj
+      run: dotnet restore LifeBridge-MVC/LifeBridge/LifeBridge.csproj
 
     - name: Build
-      run: dotnet build LifeBridge-MVC/LifeBridge.csproj --configuration Release
+      run: dotnet build LifeBridge-MVC/LifeBridge/LifeBridge.csproj --configuration Release
 
     - name: Publish
-      run: dotnet publish LifeBridge-MVC/LifeBridge.csproj --configuration Release --output ./publish
-
+      run: dotnet publish LifeBridge-MVC/LifeBridge/LifeBridge.csproj --configuration Release --output ./publish
+      
     - name: List output files
       run: ls -la ./publish
 
