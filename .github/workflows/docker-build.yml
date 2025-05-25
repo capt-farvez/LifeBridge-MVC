@@ -21,20 +21,12 @@ jobs:
       with:
         dotnet-version: 9.0.x
     
-    - name: Set working directory
-      run: cd LifeBridge-MVC/LifeBridge
-
-    - name: Restore dependencies
-      run: dotnet restore
-
-    - name: Build
-      run: dotnet build --configuration Release
-
-    - name: Publish
-      run: dotnet publish --configuration Release --output ./publish
-
-    - name: List output files
-      run: ls -la ./publish
+    - name: Build and publish project
+      run: |
+        cd LifeBridge-MVC/LifeBridge
+        dotnet restore
+        dotnet build --configuration Release
+        dotnet publish --configuration Release --output ../../publish
 
     - name: Build Docker Image
       run: docker build -t lifebridge-app .
