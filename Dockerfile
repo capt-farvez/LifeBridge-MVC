@@ -23,4 +23,5 @@ RUN dotnet publish "LifeBridge.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "LifeBridge.dll"]
+
+CMD ["sh", "-c", "dotnet ef database update && dotnet LifeBridge.dll"]
