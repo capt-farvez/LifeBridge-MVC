@@ -22,11 +22,9 @@ namespace LifeBridge.Controllers
         public async Task<IActionResult> Dashboard(){
             var viewModel = new AdminDashboardViewModel
             {
-                TotalUsers = _context.Users.Count()
-            //     TotalBloodRequests = _context.BloodRequests.Count(),
-            //     TotalBloodAvailabilities = _context.BloodDonationAvailabilities.Count(),
-            //     TotalOrganRequests = _context.OrganRequests.Count(),
-            //     TotalOrganAvailabilities = _context.OrganDonationAvailabilities.Count()
+                TotalUsers = _context.Users.Count(),
+                TotalBloodRequests = _context.BloodDonationRequests.Count(),
+                TotalOrganRequests = _context.OrganDonationRequests.Count()
             };
 
             return View(viewModel); 
