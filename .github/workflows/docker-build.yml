@@ -25,6 +25,8 @@ jobs:
       run: |
         cd LifeBridge
         dotnet restore
+        dotnet tool install --global dotnet-ef
+        dotnet ef database update
         dotnet build --configuration Release
         dotnet publish --configuration Release --output ../../publish
 
