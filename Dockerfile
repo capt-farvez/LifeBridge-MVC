@@ -18,11 +18,12 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview AS final
 WORKDIR /app
 
 # Install EF Tools for runtime
-RUN dotnet tool install --global dotnet-ef
-ENV PATH="${PATH}:/root/.dotnet/tools"
+# RUN dotnet tool install --global dotnet-ef
+# ENV PATH="${PATH}:/root/.dotnet/tools"
 
 # Copy the app
 COPY --from=build /app/publish .
 
 # Startup: Run EF migration + start app
-CMD ["sh", "-c", "dotnet ef database update && dotnet LifeBridge.dll"]
+# CMD ["sh", "-c", "dotnet ef database update && dotnet LifeBridge.dll"]
+ENTRYPOINT ["dotnet", "LifeBridge.dll"]
