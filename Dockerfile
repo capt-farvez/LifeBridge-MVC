@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/aspnet:9.0.x AS base
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview AS base
 WORKDIR /app
 EXPOSE 80
 
 # --- Build image ---
-FROM mcr.microsoft.com/dotnet/sdk:9.0.x AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0-preview AS build
 WORKDIR /src
 
 # Copy and restore
@@ -14,7 +14,7 @@ RUN dotnet restore "LifeBridge/LifeBridge.csproj"
 RUN dotnet publish "LifeBridge/LifeBridge.csproj" -c Release -o /app/publish
 
 # --- Final runtime image ---
-FROM mcr.microsoft.com/dotnet/aspnet:9.0.x AS final
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview AS final
 WORKDIR /app
 
 # Install EF Tools for runtime
