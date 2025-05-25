@@ -37,7 +37,7 @@
                     <td>@message.SentAt.ToString("yyyy-MM-dd")</td>
                     <td>
                         <form action="@Url.Action("DeleteMessage", "Admin", new { id = message.Id })" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Delete</button>
                         </form>
                     </td>
                     <td>

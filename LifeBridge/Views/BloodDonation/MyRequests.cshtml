@@ -1,0 +1,44 @@
+@model IEnumerable<LifeBridge.Models.RequestBloodDonation>
+@{
+    ViewData["Title"] = "My Blood Requests";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (!Model.Any())
+{
+    <p>No blood donation requests found.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Blood Group</th>
+                <th>Purpose</th>
+                <th>Location</th>
+                <th>Phone</th>
+                <th>Request Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model)
+            {
+                <tr>
+                    <td>@request.Bloodgroup</td>
+                    <td>@request.Perpose</td>
+                    <td>@request.Location</td>
+                    <td>@request.Phone</td>
+                    <td>@request.RequestDate.ToShortDateString()</td>
+                    <td>
+                        <a asp-action="EditRequest" asp-route-id="@request.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <form asp-action="DeleteRequest" asp-route-id="@request.Id" method="post" style="display:inline">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
