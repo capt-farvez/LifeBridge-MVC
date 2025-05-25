@@ -18,8 +18,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview AS final
 WORKDIR /app
 
 # Install EF Tools for runtime
-# RUN dotnet tool install --global dotnet-ef
-# ENV PATH="${PATH}:/root/.dotnet/tools"
+RUN dotnet tool install --global dotnet-ef
+ENV PATH="${PATH}:/root/.dotnet/tools"
 
 # Copy the app
 COPY --from=build /app/publish .
